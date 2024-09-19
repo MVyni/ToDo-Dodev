@@ -1,32 +1,69 @@
 // Clase
 
 class ToDo {
+  Texto = ""
+  Prioridade = ""
+  Feito = false
 
+  constructor(texto, prioridade){
+      this.Texto = texto;
+      this.Prioridade = prioridade;
+  }
 }
 
 // Array
-
+let arrayTodos = [];
 
 //funções projeto
 
-function CriarToDo() {
+function CriarToDo(texto, prioridade, array) {
+  let objetoTodo = new ToDo (texto, prioridade);
+    
+    if(!array.some((x) => x.Texto == texto)){
+        array.push(objetoTodo);
+        return objetoTodo;
 
+    }
 }
 
-function AtualizarToDo() {
+function AtualizarToDo(textoAntigo, textoNovo, array) {
+  let atualizado = false;
 
+    array.forEach(objeto => {
+        if(textoAntigo === objeto.Texto){
+            objeto.Texto = textoNovo;
+            atualizado = true;
+        }
+    })
+    return atualizado
 }
 
-function ConcluirToDo() {
+function ConcluirToDo(array, texto) {
+  let concluido = true;
 
+  if(array.some((x) => x.Texto == texto)){
+    if(array.Feito){
+        array.Feito = concluido;  
+    } 
+  } else {
+    concluido = false;
+  }
+  return concluido
 }
 
-function ExcluirToDo() {
-
+function ExcluirToDo(array, texto) {
+  let removido = false;
+  let indice = array.findIndex(objeto => objeto.Texto == texto);
+  
+  if(indice !== -1){
+  array.splice(indice, 1);
+  removido = true;
+  }
+  return removido
 }
 
-function PesquisarToDo() {
- 
+function PesquisarToDo(array, texto) {
+  
 }
 
 function OrdenarCrescente() {
