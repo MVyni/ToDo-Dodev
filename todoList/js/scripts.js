@@ -82,7 +82,7 @@ function OrdenarCrescente(array) {
   array.sort((a, b) => a.Prioridade - b.Prioridade)
   return array;
 }
-function OrdenarDecrescente() {
+function OrdenarDecrescente(array) {
   array.sort((a, b) => b.Prioridade - a.Prioridade)
   return array;
 }
