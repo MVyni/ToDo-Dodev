@@ -39,38 +39,52 @@ function AtualizarToDo(textoAntigo, textoNovo, array) {
 }
 
 function ConcluirToDo(array, texto) {
-  let concluido = true;
+  let concluido = false;
 
-  if(array.some((x) => x.Texto == texto)){
-    if(array.Feito){
-        array.Feito = concluido;  
-    } 
+  array.forEach(todo => {
+    if(todo.Texto == texto){
+      if(todo.Feito){
+        todo.Feito = false;   
   } else {
-    concluido = false;
+    todo.Feito = true;
   }
-  return concluido
+  concluido = true
+}
+})
+  return concluido;
 }
 
 function ExcluirToDo(array, texto) {
+  let indice 
   let removido = false;
-  let indice = array.findIndex(objeto => objeto.Texto == texto);
-  
-  if(indice !== -1){
+  array.forEach(todo => {
+    if(texto == todo.Texto){
+      indice = array.indexOf(todo);
+      removido = true;
+    }
+  })
   array.splice(indice, 1);
-  removido = true;
-  }
-  return removido
+    return removido;
 }
 
 function PesquisarToDo(array, texto) {
-  
+  let pesquisa = false;
+
+  array.forEach(todo => {
+    if(todo.Texto.includes(texto)){
+      pesquisa = true;
+    }
+  })
+  return pesquisa
 }
 
-function OrdenarCrescente() {
-  
+function OrdenarCrescente(array) {
+  array.sort((a, b) => a.Prioridade - b.Prioridade)
+  return array;
 }
 function OrdenarDecrescente() {
-  
+  array.sort((a, b) => b.Prioridade - a.Prioridade)
+  return array;
 }
 
 // Seleção de elementos
